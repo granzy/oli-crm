@@ -1,0 +1,7 @@
+delete from  n_device_manufacturer_config_backup_command where  1=1;
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'cisco', 'show running-config', 'system', NULL);
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'fengine', 'display current-configuration', 'system', NULL);
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'h3c', 'display current-configuration', 'system', NULL);
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'huawei', 'display current-configuration', 'system', NULL);
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'ruijie', 'show running-config', 'system', NULL);
+INSERT INTO n_device_manufacturer_config_backup_command (id, create_time, update_time, manufacturer_code, command, create_user, update_user) VALUES (uuid(), UTC_TIMESTAMP(), NULL, 'zte', 'show running-config', 'system', NULL);

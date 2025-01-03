@@ -1,0 +1,1 @@
+import{h as e}from"./index.e9d54774.js";function s(t){return e.post("/assetMonitorObjectRelation/save",t)}function i(t){return e.get(`assetMonitorObjectRelation/findMonitorObjectByAssetBusinessId/${t}`)}function r(t,n){return e.get(`assetMonitorObjectRelation/findMonitorObjectByAppKeyAndHostId/${t}/${n}`)}export{r as a,i as f,s};

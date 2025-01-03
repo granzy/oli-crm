@@ -1,0 +1,46 @@
+logging:
+  level:
+    root: INFO
+    # 在日志中输SQL参数的绑定信息
+    'org.hibernate.type.descriptor.sql.BasicBinder': TRACE
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/oli_crm?failOverReadOnly=false&allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    username: root
+    password: ENC(oBnoEeP+JpziQIPB//FOQUJG9DUVPvR4dxVcEuzyH7tvHYUIljWvzIIbdiosbjg1) # mysqlpwd.umop
+    hikari:
+      maximum-pool-size: 300
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        query:
+          plan_cache_max_size: 128  # controls the maximum number of entries in the plan cache (defaults to 2048)
+          plan_parameter_metadata_max_size: 32 #manages the number of ParameterMetadata instances in the cache (defaults to 128)
+
+jasypt:
+  encryptor:
+    # 生产环境通过cli方式传入 -Djasypt.encryptor.password=password
+    password: Hongshi.umop
+    algorithm: "PBEWITHHMACSHA512ANDAES_256"
+    salt-generator-classname: "org.jasypt.salt.RandomSaltGenerator"
+    iv-generator-classname: "org.jasypt.iv.RandomIvGenerator"
+    provider-name: "SunJCE"
+    string-output-type: "base64"
+    pool-size: 1
+    key-obtention-iterations: 1000
+
+# 定时任务执行器相关配置
+jobs:
+  admin:
+    # xxl-job admin address list, such as "http://address:port" or "http://address01:port,http://address02:port"
+    addresses: http://10.73.27.246:28088/xxl-job-admin
+  executor:
+    enabled: true

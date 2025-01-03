@@ -1,0 +1,1 @@
+import{h as e}from"./index.e9d54774.js";function o(t){return e.post("/zabbixAlert/alertList",t)}function s(t){return e.post("/zabbixAlert/exportExcel",t,{responseType:"blob",timeout:36e5})}export{o as a,s as e};

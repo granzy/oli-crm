@@ -1,0 +1,18 @@
+delete from n_device_manufacturer_enterprise_id where 1 = 1;
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'a10', 22610);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'array', 7564);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'cisco', 9);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'citrix', 5951);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'f5', 3375);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'fengine', 3807);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'fortinet', 12356);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'h3c', 25506);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'huawei', 2011);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'mypower', 5651);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'radware', 1872);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'ruijie', 4881);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'sangfor', 35047);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'unis', 10519);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'zte', 3902);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'juniper', 2636);
+INSERT INTO n_device_manufacturer_enterprise_id (id, create_time, update_time, code, enterprise_id) VALUES (UUID(), UTC_TIMESTAMP(), NULL, 'FutureMatrix', 56813);

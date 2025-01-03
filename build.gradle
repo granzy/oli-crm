@@ -1,0 +1,60 @@
+description = "OliCrm"
+
+allprojects {
+    repositories {
+        // 设置国内环境加速
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        // 默认仓库
+        mavenCentral()
+    }
+    group = 'cn.oli'
+    version = '2.0'
+}
+
+//
+// 自定义任务
+//
+tasks.register('buildUmopUI', Exec) {
+    group "umop build"
+    description "构建UI"
+    workingDir("${rootDir}" + File.separator + "UI")
+    def cmd = ['npm', 'run', 'build']
+    commandLine cmd
+    doFirst {
+        project(":umop-core-apps").delete {
+            delete "src/main/resources/static"
+        }
+    }
+    doLast {
+        project(":umop-core-apps").copy {
+            from "${rootDir}" + File.separator + "UI" + File.separator + "dist"
+            into "src/main/resources/static"
+        }
+    }
+}
+
+tasks.register("buildUmopApps") {
+    group "umop build"
+    description "构建核心应用"
+    tasks.findByPath(":umop-core-apps:bootJar").mustRunAfter(":umop-core-apps:clean")
+    dependsOn("buildUmopUI", ":umop-core-apps:clean", ":umop-core-apps:bootJar", ":umop-alert-api:bootJar", ":umop-alert-handler:bootJar", ":umop-alert-converge:shadowJar")
+    doFirst {
+        rootProject.delete {
+            delete "${rootDir}${File.separator}build"
+        }
+    }
+    doLast {
+        getAllprojects().forEach {
+            def projName = it.name
+            if(projName != "umop-x" && projName != "umop-common-entity") {
+                def targetJar = it.buildDir.path + File.separator + "libs"
+                it.copy {
+                    from "${targetJar}"
+                    into "${rootDir}${File.separator}build"
+                }
+            }
+        }
+    }
+}

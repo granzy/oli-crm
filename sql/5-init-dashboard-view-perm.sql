@@ -1,0 +1,7 @@
+delete from umop_x.s_role_monitor_data where data_type='DASHBOARD';
+SET @utc = UTC_TIMESTAMP();
+INSERT INTO umop_x.s_role_monitor_data (id, role_id, data_type, relation_id, create_user, create_time)  select UUID(), r.id, 'DASHBOARD', 'alertTree', '06a021da-8dd2-4f79-bf39-dcffa12165e9', @utc from s_role r where r.is_group=false and r.delete_time is null;
+INSERT INTO umop_x.s_role_monitor_data (id, role_id, data_type, relation_id, create_user, create_time)  select UUID(), r.id, 'DASHBOARD', 'assetAlert', '06a021da-8dd2-4f79-bf39-dcffa12165e9', @utc from s_role r where r.is_group=false and r.delete_time is null;
+INSERT INTO umop_x.s_role_monitor_data (id, role_id, data_type, relation_id, create_user, create_time)  select UUID(), r.id, 'DASHBOARD', 'lineAlert', '06a021da-8dd2-4f79-bf39-dcffa12165e9', @utc from s_role r where r.is_group=false and r.delete_time is null;
+INSERT INTO umop_x.s_role_monitor_data (id, role_id, data_type, relation_id, create_user, create_time)  select UUID(), r.id, 'DASHBOARD', 'portAlert', '06a021da-8dd2-4f79-bf39-dcffa12165e9', @utc from s_role r where r.is_group=false and r.delete_time is null;
+INSERT INTO umop_x.s_role_monitor_data (id, role_id, data_type, relation_id, create_user, create_time)  select UUID(), r.id, 'DASHBOARD', 'alertTimeline', '06a021da-8dd2-4f79-bf39-dcffa12165e9', @utc from s_role r where r.is_group=false and r.delete_time is null;

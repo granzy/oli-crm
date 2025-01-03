@@ -1,0 +1,115 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "2.7.15"
+    id "io.spring.dependency-management" version "1.0.15.RELEASE"
+    /*
+     加密文本:
+       eg: gradle encryptText --text=passwdText --password=encryptorToken
+       execute: gradle encryptText --text=someText --password=encryptorToken
+       result: Encrypted text: SCw2qhh2bvTFJ4TPXgolTqM1kDDZ8FWbSW3yHlvPLDV9yektRCO7Jx8I1ZMuzSzm
+     解密文本:
+       eg: gradle decryptText --text=encryptText --password=encryptorToken
+       execute: gradle decryptText --text=SCw2qhh2bvTFJ4TPXgolTqM1kDDZ8FWbSW3yHlvPLDV9yektRCO7Jx8I1ZMuzSzm --password=encryptorToken
+       result: Decrypted text: someText
+     加密文件:
+       eg: search for non production yaml files for values wrapped with ENCRYPT() and encrypt their values
+       execute: gradle encryptProperties --file-filter-pattern="application-((?!prod).*)\.yaml" --password=encryptorToken
+       result: some.very.secret.property=ENCRYPT(private) -> some.very.secret.property=ENC(Lk5VWETH98C0/E/wOqzioQ==)
+     解密文件:
+       eg: Search for all .properties/.yaml files for values wrapped with ENC() and decrypt them
+       execute: gradle encryptProperties --password=encryptorToken
+       result: some.very.secret.property=ENC(Lk5VWETH98C0/E/wOqzioQ==) -> some.very.secret.property=private
+     */
+    id "io.github.ximtech.jasypt-encrypt-plugin" version "1.3.3"
+    // id "org.springframework.boot" version "3.1.3"
+    // id "io.spring.dependency-management" version "1.1.3"
+}
+
+java {
+    sourceCompatibility = "11"
+}
+
+ext {
+    jasyptVer = "3.0.5"
+    querydslVer = "5.0.0"
+    commonLangVer = "3.13.0"
+    guavaVer = "32.1.2-jre"
+    jjwtVer = "0.12.1"
+    hutoolVer = "5.8.26"
+    pgsqlVer = "42.6.0"
+    poiVer = "5.2.4"
+    docVer = "1.7.0"
+    blazePersistence = "1.6.10"
+    javaxMailVer = '1.6.2'
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-aop"
+    implementation "org.springframework.boot:spring-boot-starter-freemarker"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation "org.springframework.boot:spring-boot-starter-validation"           // 模型验证
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.retry:spring-retry"                            // 重试
+    implementation "org.springdoc:springdoc-openapi-ui:${docVer}"                      // API文档
+    implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptVer}"  // 配置文件加解密
+    implementation "com.google.guava:guava:${guavaVer}"
+    // QueryDSL
+    implementation "com.querydsl:querydsl-core:${querydslVer}"
+    implementation "com.querydsl:querydsl-jpa:${querydslVer}"
+    // Apache Commons
+    implementation "org.apache.commons:commons-lang3:${commonLangVer}"
+    implementation "org.apache.httpcomponents:httpclient"
+    implementation "commons-net:commons-net:3.9.0"
+    implementation "cn.hutool:hutool-http:${hutoolVer}"
+
+    // security
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "io.jsonwebtoken:jjwt:${jjwtVer}"
+    implementation "cn.hutool:hutool-jwt:${hutoolVer}"
+
+    // POI
+    implementation "cn.hutool:hutool-poi:${hutoolVer}"
+    implementation "org.apache.poi:poi-ooxml:${poiVer}"
+
+    // XXL-Job
+    implementation "com.xuxueli:xxl-job-core:2.4.0"
+
+    //blazebit
+    implementation "com.blazebit:blaze-persistence-core-api:${blazePersistence}"
+    implementation "com.blazebit:blaze-persistence-core-impl:${blazePersistence}"
+    implementation "com.blazebit:blaze-persistence-integration-hibernate-5.6:${blazePersistence}"
+    implementation "com.blazebit:blaze-persistence-integration-querydsl-expressions:${blazePersistence}"
+
+
+    runtimeOnly "com.h2database:h2"
+    runtimeOnly "mysql:mysql-connector-java:8.0.28"
+    runtimeOnly "org.postgresql:postgresql:${pgsqlVer}"
+
+    // mail
+    implementation "javax.mail:javax.mail-api:${javaxMailVer}"
+    implementation "com.sun.mail:javax.mail:${javaxMailVer}"
+
+
+    compileOnly "org.projectlombok:lombok"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    annotationProcessor "com.querydsl:querydsl-apt:${querydslVer}:jpa"
+    annotationProcessor "org.springframework.boot:spring-boot-starter-data-jpa"
+    annotationProcessor "org.projectlombok:lombok"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testCompileOnly "org.projectlombok:lombok"
+    testAnnotationProcessor "org.projectlombok:lombok"
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}

@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: crm
+  main:
+    banner-mode: off
+  profiles:
+    active: test
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    async:
+      request-timeout: 3600000 # 1小时
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: 18099
+  http2.enabled: true
+  compression.enabled: true
+  ssl:
+    enabled: false # 关闭SSL, 开启h2c协议
+  servlet:
+    context-path: /umop
+
+security:
+  permission:
+    expire: 86400 # 1天，s为单位
+    white-list:
+      - /
+      - /auth/login
+      - /auth/logout
+      - /index.html
+      - /assets/**/*.*
+      - /actuator/**
+      - /swagger-ui.html
+      - /swagger-ui/**
+      - /swagger-resources/**
+      - /v3/api-docs/**
+      - /configBackupExec/** # 配置备份
+      - /deviceExecCommand/taskReport
+      - /attachFile/downloadFile/** #附件下载
+      - /sysUser/resetPasswordByEmail #重置密码
+      - /visualScreen/** #可视化大屏对接接口
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method

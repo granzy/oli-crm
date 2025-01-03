@@ -1,0 +1,1 @@
+import{h as s}from"./index.e9d54774.js";function n(t){return s.post("/sysDict/pageList",t)}function y(t){return s.post("/sysDict",t)}function c(t){return s.delete(`/sysDict/${t}`)}function o(t,i){return s.post("/sysDict/findSysDictByTypeAndCode",{type:t,code:i})}function r(t){return s.get(`/sysDict/findSysDictsByType/${t}`)}export{o as a,c as d,r as f,n as q,y as s};

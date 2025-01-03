@@ -1,0 +1,21 @@
+body {
+  --vxe-font-color: var(--color-text-2);
+  --vxe-font-disabled-color: var(--color-text-4);
+  --vxe-table-header-font-color: var(--vxe-font-color);
+  --vxe-table-border-color: var(--color-neutral-3);
+  --vxe-table-header-background-color: var(--color-neutral-2);
+  --vxe-table-body-background-color: var(--color-bg-2);
+  --vxe-table-footer-background-color: var(--color-bg-2);
+  --vxe-table-row-hover-background-color: var(--color-fill-1);
+  --vxe-table-row-striped-background-color: var(--color-fill-1);
+  --vxe-table-row-hover-striped-background-color: var(--color-fill-1);
+  --vxe-input-disabled-color:  var(--color-border-2);
+  --vxe-input-border-color: var(--color-border-4);
+  --vxe-tooltip-dark-color: var(--color-text-2);
+  --vxe-tooltip-dark-background-color: var(--color-bg-8);
+  --vxe-tooltip-light-background-color:  var(--color-bg-8);
+}
+
+body[arco-theme='dark'] {
+  --vxe-loading-background-color: rgb(255 255 255 / 10%);
+}

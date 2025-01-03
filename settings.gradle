@@ -1,0 +1,3 @@
+rootProject.name = 'oli-crm'
+
+include 'crm-core-apps'

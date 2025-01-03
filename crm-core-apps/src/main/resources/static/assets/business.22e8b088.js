@@ -1,0 +1,1 @@
+import{h as e}from"./index.e9d54774.js";function t(s){return e.post("/business/treeList",s)}function i(s){return e.post("/business",s)}function r(s){return e.delete(`/business/${s}`)}function u(s){return e.post("/business/assignMonitorObjectBusiness",s)}export{u as a,r as d,t as q,i as s};
